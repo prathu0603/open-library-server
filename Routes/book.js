@@ -50,4 +50,16 @@ router.route("/create-book").post(async (request, response) => {
   }
 });
 
+router.route("/admin").post(async (request, response) => {
+  const { password } = request.body;
+  try {
+    if (password === "let123") {
+      return response.status(200).send("Access Granted");
+    } else return response.status(401).send("Unauthorized");
+  } catch (error) {
+    console.error(error);
+    response.status(500).send("Server Error");
+  }
+});
+
 module.exports = router;
